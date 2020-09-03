@@ -14,3 +14,10 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api/v1/todos'], function () use ($router) {
+    $router->get('/', 'TodosController@index');
+    $router->post('/', 'TodosController@store');
+    $router->patch('/{id:[0-9]+}', 'TodosController@update');
+    $router->delete('/{id:[0-9]+}', 'TodosController@destroy');
+});
