@@ -20,8 +20,12 @@ class TodosController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(){
-        return Todo::paginate(10);
+    public function index(Request $request){
+        $this->validate($request, [
+            'is_completed' => 'boolean'
+        ]);
+
+        return Todo::withFilters();
     }
 
     /**
