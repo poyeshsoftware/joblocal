@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class ExampleController extends Controller
+class TodosController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -14,5 +14,7 @@ class ExampleController extends Controller
         //
     }
 
-    //
+    public function index(){
+
+    }
 }
