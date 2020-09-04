@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TodoResource;
 use App\models\Todo;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class TodosController extends Controller
             'is_completed' => 'boolean'
         ]);
 
-        return Todo::withFilters();
+        return TodoResource::collection(Todo::withFilters());
     }
 
     /**
