@@ -1,0 +1,363 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link rel="stylesheet" href="/docs/css/style.css" />
+    <script src="/docs/js/all.js"></script>
+
+
+          <script>
+        $(function() {
+            setupLanguages(["bash","javascript"]);
+        });
+      </script>
+      </head>
+
+  <body class="">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="/docs/images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+        <img src="/docs/images/logo.png" />
+                    <div class="lang-selector">
+                                  <a href="#" data-language-name="bash">bash</a>
+                                  <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+                            <div class="search">
+              <input type="text" class="search" id="input-search" placeholder="Search">
+            </div>
+            <ul class="search-results"></ul>
+              <div id="toc">
+      </div>
+                    <ul class="toc-footer">
+                                  <li><a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a></li>
+                            </ul>
+            </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+          <!-- START_INFO -->
+<h1>Info</h1>
+<p>Welcome to the generated API reference.
+<a href="http://localhost:8000/docs/collection.json">Get Postman Collection</a></p>
+<!-- END_INFO -->
+<h1>Todos management</h1>
+<p>APIs for managing Todos
+authenticated false</p>
+<!-- START_4fabf3ee5456fd3e57cef0111294ac1f -->
+<h2>Get List of Todos</h2>
+<p>[Insert optional longer description of the API endpoint here.]</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost:8000/api/v1/todos?is_completed=1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/todos"
+);
+
+let params = {
+    "is_completed": "1",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "title": "first  todo updated",
+            "is_completed": 0
+        },
+        {
+            "title": "second todo",
+            "is_completed": 0
+        },
+        {
+            "title": "third  todo",
+            "is_completed": 0
+        },
+        {
+            "title": "fourth  todo",
+            "is_completed": 1
+        }
+    ],
+    "links": {
+        "first": "http:\/\/localhost:8000\/api\/v1\/todos?page=1",
+        "last": "http:\/\/localhost:8000\/api\/v1\/todos?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "http:\/\/localhost:8000\/api\/v1\/todos",
+        "per_page": 10,
+        "to": 4,
+        "total": 4
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/v1/todos</code></p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>is_completed</code></td>
+<td>optional</td>
+<td>boolean optional Field to filter by if they have been done or not</td>
+</tr>
+</tbody>
+</table>
+<!-- END_4fabf3ee5456fd3e57cef0111294ac1f -->
+<!-- START_b773ac6c84efab8cfb720c3ce9d4758a -->
+<h2>Create a Todo</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost:8000/api/v1/todos" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"title":"quas"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/todos"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "title": "quas"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (201):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 3,
+        "title": "neww  todo",
+        "is_completed": null
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (422):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "title": [
+        "The title field is required."
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/v1/todos</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>required</td>
+<td>The title of the todo.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_b773ac6c84efab8cfb720c3ce9d4758a -->
+<!-- START_20b0351af32e17d55d847f843f883a9c -->
+<h2>Update a Todo Item</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PATCH \
+    "http://localhost:8000/api/v1/todos/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"title":"assumenda","is_completed":false}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/todos/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "title": "assumenda",
+    "is_completed": false
+}
+
+fetch(url, {
+    method: "PATCH",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">1</code></pre>
+<blockquote>
+<p>Example response (422):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "title": [
+        "The title field is required."
+    ],
+    "is_completed": [
+        "The is completed field is required."
+    ]
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PATCH api/v1/todos/{id:[0-9]+}</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>required</td>
+<td>id of todo that you want to update</td>
+</tr>
+</tbody>
+</table>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>required</td>
+<td>The title of the todo.</td>
+</tr>
+<tr>
+<td><code>is_completed</code></td>
+<td>boolean</td>
+<td>required</td>
+<td>The state if tge todo, if it has been done or not</td>
+</tr>
+</tbody>
+</table>
+<!-- END_20b0351af32e17d55d847f843f883a9c -->
+<!-- START_983c44cf4ecafacbb13314c0b82ded56 -->
+<h2>Remove a Todo Item</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost:8000/api/v1/todos/1" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/v1/todos/1"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">1</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/v1/todos/{id:[0-9]+}</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>required</td>
+<td>id of todo that you want to remove</td>
+</tr>
+</tbody>
+</table>
+<!-- END_983c44cf4ecafacbb13314c0b82ded56 -->
+      </div>
+      <div class="dark-box">
+                        <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                              </div>
+                </div>
+    </div>
+  </body>
+</html>

@@ -11,8 +11,9 @@ class TodoResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'title' => $this->title,
-            'is_complete' => $this->is_complete,
+            'is_completed' => $this->is_completed,
         ];
     }
 }

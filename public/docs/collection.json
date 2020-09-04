@@ -1,0 +1,136 @@
+{
+    "variables": [],
+    "info": {
+        "name": "Joblocal PHP Programming Challenge API",
+        "_postman_id": "74ccf6b6-b1da-42a2-a8d8-c77f3261cd83",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Todos management",
+            "description": "APIs for managing Todos\nauthenticated false",
+            "item": [
+                {
+                    "name": "Get List of Todos\n[Insert optional longer description of the API endpoint here.]",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/v1\/todos",
+                            "query": [
+                                {
+                                    "key": "is_completed",
+                                    "value": "1",
+                                    "description": "boolean optional Field to filter by if they have been done or not",
+                                    "disabled": false
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Create a Todo",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/v1\/todos",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"quas\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Update a Todo Item",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/v1\/todos\/{id:[0-9]+}",
+                            "query": []
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"assumenda\",\n    \"is_completed\": false\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Remove a Todo Item",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/v1\/todos\/{id:[0-9]+}",
+                            "query": []
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        }
+    ]
+}
